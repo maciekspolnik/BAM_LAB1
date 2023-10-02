@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">LAB1</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="wprowad_nazwe_u_ytkownika">Wprowadź nazwe użytkownika</string>
+    <string name="przejd_dalej">Przejdź dalej</string>
+</resources>
