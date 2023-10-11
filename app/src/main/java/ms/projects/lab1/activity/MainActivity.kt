@@ -1,4 +1,4 @@
-package ms.projects.lab1
+package ms.projects.lab1.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,20 +14,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button.setOnClickListener {
-            openUserActivity(binding.editTextText.text.toString())
-
-        }
+        binding.button.setOnClickListener { openUserActivity(binding.editTextText.text.toString()) }
 
     }
 
-
-    fun openUserActivity(user: String) {
-        if(user.isEmpty()){
+    private fun openUserActivity(user: String) {
+        if (user.isEmpty()) {
             return
         }
         val intent = Intent(this@MainActivity, UserActivity::class.java)
-        intent.putExtra("User",user)
+        intent.putExtra("username", user)
         startActivity(intent)
     }
 

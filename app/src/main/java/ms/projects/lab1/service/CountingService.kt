@@ -1,4 +1,4 @@
-package ms.projects.lab1
+package ms.projects.lab1.service
 
 import android.app.Service
 import android.content.Intent
@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit
 
 class CountingService : Service() {
     private val unsubscribe = PublishSubject.create<Any>()
+    private var number: Long = 0
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.let {
-            val observable = Observable.interval(0, 1, TimeUnit.SECONDS)
 
             val observer = object : Observer<Long> {
                 override fun onSubscribe(d: Disposable) {
@@ -23,7 +23,9 @@ class CountingService : Service() {
                 }
 
                 override fun onNext(value: Long) {
-                    Log.d("CountingService", value.toString())
+                    number = value
+                    Log.d("CountingService", number.toString())
+
                 }
 
                 override fun onError(e: Throwable) {
@@ -31,9 +33,15 @@ class CountingService : Service() {
                 }
 
                 override fun onComplete() {
+                    val broadcast = Intent().apply {
+                        action = "NumberReceiverData"
+                        putExtra("username", it.getStringExtra("username"))
+                        putExtra("number", number)
+                    }
+                    sendBroadcast(broadcast)
                 }
             }
-            observable.takeUntil(unsubscribe).subscribe(observer)
+            Observable.interval(0, 1, TimeUnit.SECONDS).takeUntil(unsubscribe).subscribe(observer)
         }
         return START_STICKY
     }
