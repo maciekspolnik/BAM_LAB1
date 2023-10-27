@@ -8,7 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ms.projects.lab1.database.DatabaseHelper
+import ms.projects.lab1.database.AppDatabase
 import ms.projects.lab1.databinding.ActivityUserBinding
 import ms.projects.lab1.receiver.NumberReceiver
 import ms.projects.lab1.service.CountingService
@@ -39,7 +39,7 @@ class UserActivity : AppCompatActivity() {
 
     private fun showDatabaseContent() {
         CompositeDisposable().add(
-            DatabaseHelper(applicationContext).getAll()
+            AppDatabase.getInstance(applicationContext).getUserDataDao().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
                 .subscribe(

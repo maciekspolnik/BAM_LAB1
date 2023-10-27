@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         if (user.isEmpty()) {
             return
         }
-        val intent = Intent(this@MainActivity, UserActivity::class.java)
-        intent.putExtra("username", user)
+        val intent =
+            Intent(this@MainActivity, UserActivity::class.java).apply { putExtra("username", user) }
         startActivity(intent)
     }
 

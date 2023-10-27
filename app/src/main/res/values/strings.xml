@@ -5,4 +5,7 @@
 
     <string name="wprowad_nazwe_u_ytkownika">Wprowadź nazwe użytkownika</string>
     <string name="przejd_dalej">Przejdź dalej</string>
+    <string name="baza_danych">BAZA DANYCH</string>
+    <string name="stop">STOP</string>
+    <string name="start">START</string>
 </resources>

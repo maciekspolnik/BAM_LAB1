@@ -6,7 +6,7 @@ import android.content.Intent
 import android.util.Log
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ms.projects.lab1.database.DatabaseHelper
+import ms.projects.lab1.database.AppDatabase
 import ms.projects.lab1.database.UserData
 
 class NumberReceiver : BroadcastReceiver() {
@@ -18,7 +18,7 @@ class NumberReceiver : BroadcastReceiver() {
             )
 
             CompositeDisposable().add(
-                DatabaseHelper(context).insert(
+                AppDatabase.getInstance(context).getUserDataDao().insert(
                     UserData(
                         username = it.getString("username"),
                         number = it.getLong("number")
